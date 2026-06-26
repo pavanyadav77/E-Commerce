@@ -3,12 +3,11 @@ package com.scaler.productcatalogservice.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
-public class Product extends BaseModel{
+public class Category extends BaseModel{
     String  name;
-    String description;
-    Category category;
-    Double  price;
-    String image;
+    List<Product> products;
 }

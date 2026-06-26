@@ -1,16 +1,16 @@
 package com.scaler.productcatalogservice.dto;
 
-import com.scaler.productcatalogservice.model.Category;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductDto {
+public class FakeStoreProductDto {
     Long id;
     String title;
     Double price;
     String description;
     String category;
     String image;
+
 }
