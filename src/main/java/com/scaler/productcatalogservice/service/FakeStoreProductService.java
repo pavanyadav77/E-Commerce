@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.boot.restclient.RestTemplateBuilder;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class FakeStoreProductService implements IProductService{
 
@@ -28,6 +31,17 @@ public class FakeStoreProductService implements IProductService{
             return from(fakeStoreProductDto.getBody());
         }
         return null;
+    }
+
+    public List<Product> getAllProducts(){
+        RestTemplate restTemplate = restTemplateBuilder.build();
+        ResponseEntity<FakeStoreProductDto[]> response =
+                restTemplate.getForEntity("https://fakestoreapi.com/products",FakeStoreProductDto[].class);
+        List<Product> products = new ArrayList<>();
+        for(FakeStoreProductDto fakeStoreProductDto:response.getBody()){
+            products.add(from(fakeStoreProductDto));
+        }
+        return products;
     }
 
     private Product from(FakeStoreProductDto fakeStoreProductDto) {

@@ -6,6 +6,7 @@ import com.scaler.productcatalogservice.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,12 @@ public class ProductController {
 
     @GetMapping("/products")
     public List<ProductDto> getAllProducts(){
-        return null;
+        List<ProductDto> productDtos = new ArrayList<>();
+        List<Product> products = productService.getAllProducts();
+        for(Product product : products){
+            productDtos.add(from(product));
+        }
+        return productDtos;
     }
 
     @PostMapping("Products/add")
